@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import Task from './Task'
 
-const Tasks = () => {
-    const [tasks, setTasks] = useState([])
+const Tasks = ({ tasks }) => {
+    // const [tasks, setTasks] = useState([])
 
-    useEffect(() => {
-        fetch('http://localhost:9292/tasks')
-        .then( r => r.json())
-        .then( task => {
-            // console.log("this is a task", task)
-            setTasks(task) 
-        })
-    }, [])
+    // useEffect(() => {
+    //     fetch('http://localhost:9292/tasks')
+    //     .then( r => r.json())
+    //     .then( task => {
+    //         setTasks(task) 
+    //     })
+    // }, [])
 
     const task = tasks.map((task) => <Task key={task.id} taskInfo={task} />)
 
