@@ -1,13 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { Collapse, CardBody, Card } from 'reactstrap';
+import Task from './Task'
 
 const Category = ({ name, tasks}) => {
 
-    // console.log("this is tasks in Category component", tasks)
+  const [isOpen, setIsOpen] = useState(false);
 
+  const toggle = () => setIsOpen(!isOpen);
+
+    console.log("this is tasks in Category component", tasks)
+
+   
 
   return (
     <div>
-        <h3>{name}</h3>
+      <h3 onClick={toggle} >{name}</h3>
+      <Collapse isOpen={isOpen}>
+        <Card>
+          <CardBody>
+            {tasks.map((task) => <Task key={task.id} taskInfo={task} />)}
+          </CardBody>
+        </Card>
+      </Collapse>
     </div>
   )
 }

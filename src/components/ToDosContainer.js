@@ -2,31 +2,35 @@ import React, { useState, useEffect } from 'react';
 import Categories from './Categories';
 import Tasks from './Tasks';
 
-const ToDosContainer = () => {
-    const [categories, setCategories] = useState([])
-    const [tasks, setTasks] = useState([])
+const ToDosContainer = ({ categories }) => {
+    // const [categories, setCategories] = useState([])
+    // const [tasks, setTasks] = useState([])
 
-    useEffect(() => {
-        fetch('http://localhost:9292/categories')
-        .then(r => r.json())
-        .then(category => {
-          // console.log("this is category", category)
-          setCategories(category)
-        })
-    }, [])
+    // useEffect(() => {
+    //     fetch('http://localhost:9292/categories')
+    //     .then(r => r.json())
+    //     .then(category => {
+    //       setCategories(category)
+    //     })
+    // }, [])
 
-    useEffect(() => {
-        fetch('http://localhost:9292/tasks')
-        .then( r => r.json())
-        .then( task => {
-            setTasks(task) 
-        })
-    }, [])
+    // useEffect(() => {
+    //     fetch('http://localhost:9292/tasks')
+    //     .then( r => r.json())
+    //     .then( task => {
+    //         setTasks(task) 
+    //     })
+    // }, [])
+
+    // function saveTask (taskObj){
+    //     let tempList = tasks
+    //     tempList.push(taskObj)
+    //     setTasks(tempList)
+    // }
 
   return (
     <div>
         <Categories categories={categories} />
-        <Tasks tasks={tasks} />
     </div>
   )
 }
