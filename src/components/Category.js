@@ -8,7 +8,7 @@ const Category = ({ name, tasks}) => {
 
   const toggle = () => setIsOpen(!isOpen);
 
-    console.log("this is tasks in Category component", tasks)
+    // console.log("this is tasks in Category component", tasks)
 
    
 

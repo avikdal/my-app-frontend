@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-const CreateTask = ({ modal, toggle, save }) => {
+const CreateTask = ({ modal, reset, toggle, save }) => {
     const [category, setCategory] = useState('');
     const [taskDescription, setTaskDescription] = useState('');
 
@@ -16,11 +16,24 @@ const CreateTask = ({ modal, toggle, save }) => {
     }
 
     function handleSave(){
-        console.log("clicked")
         let taskObj = {}
         taskObj["category"] = category
         taskObj["description"] = taskDescription
-        save(taskObj)
+        fetch('http://localhost:9292/tasks', {
+            method: "POST", 
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(taskObj)
+          }
+        )
+        .then(r => r.json())
+        .then(data => {
+          console.log("this is the returned object", data)
+          save(data)
+        })
+        reset(false)
+     
     }
 
 

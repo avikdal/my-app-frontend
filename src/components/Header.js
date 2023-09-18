@@ -10,7 +10,7 @@ const Header = ({ save }) => {
     <div>
       <h1>Task App  ✅</h1>
       <button className= "btn btn-primary mt-2" onClick={() => setModal(true)}> Create Task </button>
-      <CreateTask modal={modal} toggle={toggle} save={save} />
+      <CreateTask modal={modal} reset={setModal} toggle={toggle} save={save} />
     </div>
   )
 }

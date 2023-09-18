@@ -28,6 +28,10 @@ function App() {
       // let tempList = tasks
       // tempList.push(taskObj)
       // setTasks(tempList)
+      console.log("here is the obj in app", taskObj)
+      let tempCategories = categories
+      tempCategories.push(taskObj)
+      setCategories(tempCategories)
   }
 
 
