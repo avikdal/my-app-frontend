@@ -1,4 +1,10 @@
-
+.header {
+  height: "200px";
+  width: 100%;
+  background-color: rgb(101, 168, 235);
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
 
 
 
