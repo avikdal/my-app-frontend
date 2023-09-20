@@ -1,9 +1,15 @@
 import React from 'react'
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormText, CloseButton } from 'reactstrap';
 
-const Task = ({ taskInfo }) => {
+const Task = ({ taskInfo, deleteTask }) => {
 
     console.log("task info", taskInfo)
+
+    function handleClick(e){
+      console.log("close buttonclicked event", e)
+      console.log("taskInfo in task component", taskInfo)
+      deleteTask(taskInfo)
+    }
     
   return (
     <div>
@@ -14,8 +20,10 @@ const Task = ({ taskInfo }) => {
       >
         <Input type="checkbox" />
         <Label check>{taskInfo.task}</Label>
-        <Button outline size="sm"> 🗑️ </Button>
+        {/* <Button outline size="sm"> 🗑️ </Button> */}
+        <CloseButton onClick={handleClick} />
       </FormGroup>
+     
     </div>
   )
 }

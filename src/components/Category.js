@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Collapse, CardBody, Card } from 'reactstrap';
 import Task from './Task'
 
-const Category = ({ name, tasks}) => {
+const Category = ({ name, tasks, deleteTask }) => {
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -18,7 +18,7 @@ const Category = ({ name, tasks}) => {
       <Collapse isOpen={isOpen}>
         <Card>
           <CardBody>
-            {tasks.map((task) => <Task key={task.id} taskInfo={task} />)}
+            {tasks.map((task) => <Task key={task.id} taskInfo={task} deleteTask={deleteTask} />)}
           </CardBody>
         </Card>
       </Collapse>
