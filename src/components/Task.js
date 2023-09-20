@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Label, Input, FormText, CloseButton } from 're
 
 const Task = ({ taskInfo, deleteTask }) => {
 
-    console.log("task info", taskInfo)
+    // console.log("task info", taskInfo)
 
     function handleClick(e){
       console.log("close buttonclicked event", e)

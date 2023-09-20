@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Categories from './Categories';
-import Tasks from './Tasks';
+
 
 const ToDosContainer = ({ categories, deleteTask }) => {
     // const [categories, setCategories] = useState([])

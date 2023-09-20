@@ -24,12 +24,16 @@ const NavBar = ({ save }) => {
         </NavItem>
         <NavItem>
             <NavLink
-                disabled
-                href="#"
+                href="/tasks"
             >
-                Disabled Link
+                All Tasks
             </NavLink>
-            <button className= "btn btn-primary mt-2" onClick={() => setModal(true)}> Create Task </button>
+            {/* <button className= "btn btn-primary mt-2" onClick={() => setModal(true)}> Create Task </button>
+            <CreateTask modal={modal} reset={setModal} toggle={toggle} save={save} /> */}
+        </NavItem>
+        <NavItem>
+            {/* <button className= "btn btn-primary mt-2" onClick={() => setModal(true)}> Create Task </button> */}
+            <NavLink onClick={() => setModal(true)}> Create a Task</NavLink>
             <CreateTask modal={modal} reset={setModal} toggle={toggle} save={save} />
         </NavItem>
     </Nav>
