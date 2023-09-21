@@ -1,18 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import Task from './Task'
 
-const Tasks = ({ deleteTask }) => {
-    const [tasks, setTasks] = useState([])
+const Tasks = ({ deleteTask, categories, tasks }) => {
+    // const [tasks, setTasks] = useState([])
 
-    useEffect(() => {
-        fetch('http://localhost:9292/tasks')
-        .then( r => r.json())
-        .then( task => {
-            setTasks(task) 
-        })
-    }, [])
+    // useEffect(() => {
+    //     fetch('http://localhost:9292/tasks')
+    //     .then( r => r.json())
+    //     .then( task => {
+    //         setTasks(task) 
+    //     })
+    // }, [])
 
     // const task = tasks.map((task) => <Task key={task.id} taskInfo={task} />)
+    // console.log("categories", categories)
+
+    // const arrOfTasksArr = categories.map((category) => category.tasks)
+    // // console.log("tasksArr", arrOfTasksArr)
+    // const arrOfTasks = arrOfTasksArr.map((arr) => {
+    //   console.log("arr", arr)
+    //   arr.forEach((hash) => {
+        
+    //     console.log("hashy", hash)
+    //   })
+    // })
+    // console.log("arrOfTasks", arrOfTasks)
 
   return (
     <div>

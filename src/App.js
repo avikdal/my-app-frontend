@@ -72,13 +72,13 @@ function App() {
       .then((deletedTask) => updateCategories(deletedTask))
   }
 
-  // function deleteDeletedTaskFromState(task){
-  //   console.log("here is the task in deleteDeletedTaskFromState", task)
-    
-  // }
 
-  // const tasks = categories.map((category) => category.tasks).map((task) => console.log("task in 2nd map", task))
-  // console.log("tasks", tasks)
+  const arrOfTasksArrs = categories.map((category) => category.tasks)
+  console.log("arrOfTasksArrs", arrOfTasksArrs)
+
+  const tasks = [].concat(...arrOfTasksArrs)
+  console.log("tasks in app", tasks)
+
   return (
     <>
       <div className='header text-center'>
@@ -91,7 +91,7 @@ function App() {
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/categories" element={<ToDosContainer  categories={categories} deleteTask={deleteTask} />} />
-        <Route path="/tasks" element={<Tasks deleteTask={deleteTask} />} />
+        <Route path="/tasks" element={<Tasks deleteTask={deleteTask} categories={categories} tasks={tasks} />} />
       </Routes>
     </>
   );
