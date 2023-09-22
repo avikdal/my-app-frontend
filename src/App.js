@@ -3,16 +3,21 @@ import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
 import ToDosContainer from './components/ToDosContainer';
-import CreateTask from './modals/CreateTask';
 import Home from './components/Home';
-import NavBar from './components/NavBar';
 import Tasks from './components/Tasks';
 
 // Implement proper front end state management. You should be updating state using a setState function after receiving your response from a POST, PATCH, or DELETE request. You should NOT be relying on a GET request to update state.
 
 function App() {
   const [categories, setCategories] = useState([])
-  // const [tasks, setTasks] = useState([])
+
+  // const fetch = () => {
+  //   fetch('http://localhost:9292/categories')
+  //     .then(r => r.json())
+  //     .then(category => setCategories(category))
+  //   }
+
+  //   useEffect(fetch, [])
 
   useEffect(() => {
       fetch('http://localhost:9292/categories')
@@ -22,32 +27,68 @@ function App() {
       })
   }, [])
 
-  // useEffect(() => {
-  //     fetch('http://localhost:9292/tasks')
-  //     .then( r => r.json())
-  //     .then( task => {
-  //         setTasks(task) 
-  //     })
-  // }, [])
+  const arrOfTasksArrs = categories.map((category) => category.tasks)
 
-  function saveTask(taskObj){
-      // console.log("here is the obj in app", taskObj)
-      // console.log("categories in saveTask", categories)
-      let updateCategories = categories.map((category) => {
-        if (category.id === taskObj.category_id) {
-            // make copy of category that has updated array tasks
-            let updatedTasks = [...category.tasks, taskObj]
-            // add taskObj to category.tasks array
-            let updatedCategory = {...category, tasks: updatedTasks}
-          return updatedCategory
-        } else {
-          return category
-        }
-      })
-      setCategories(updateCategories)
+  const tasks = [].concat(...arrOfTasksArrs)
+
+  function updateCategoriesTasks(taskObj){
+    console.log("taskObj in updateCategories", taskObj)
+    let updateCategories = categories.map((category) => {
+      if (category.id === taskObj.category_id) {
+          // make copy of category that has updated array tasks
+          let updatedTasks = [...category.tasks, taskObj]
+          // add taskObj to category.tasks array
+          let updatedCategory = {...category, tasks: updatedTasks}
+        return updatedCategory
+      } else {
+        return category
+      }
+    })
+    setCategories(updateCategories)
   }
 
-  function updateCategories(deletedTaskObj){
+  function addCategory(taskObj){
+    console.log("how to add object to array? do I need to make another fetch request?")
+    // grab category
+    // add category to categories array
+    let correctedTaskObj = {id: taskObj.id, task: taskObj.task, category_id: taskObj.category_id}
+    let newCategory = {...taskObj.category}
+    newCategory.tasks = [correctedTaskObj]
+    let updatedCategories = [...categories, newCategory]
+
+    setCategories(updatedCategories)
+
+    console.log("taskObj", taskObj)
+  }
+
+  function saveTask(taskObj){
+    console.log(" hit it taskObj in saveTask", taskObj)
+    let correctedTaskObj = {id: taskObj.id, task: taskObj.task, category_id: taskObj.category_id}
+    console.log("correctedTaskObj", correctedTaskObj)
+    // console.log("tasks in save task func", tasks)
+    // is the category associated with the task object, is it a new category?
+    // tasks.map((task) => task.category_id).includes(taskObj.category_id)
+    let checkCategories = categories.find((category) => category.id == taskObj.category_id)
+    console.log("checkCategories", checkCategories)
+    // console.log("checkCategories", checkCategories)
+    // if checkCategories is in existing categories array updateCategories, if not add new category to categories array then updateCategories
+    checkCategories ? updateCategoriesTasks(correctedTaskObj) : addCategory(taskObj)
+
+    // let updateCategories = categories.map((category) => {
+    //     if (category.id === taskObj.category_id) {
+    //         // make copy of category that has updated array tasks
+    //         let updatedTasks = [...category.tasks, taskObj]
+    //         // add taskObj to category.tasks array
+    //         let updatedCategory = {...category, tasks: updatedTasks}
+    //       return updatedCategory
+    //     } else {
+    //       return category
+    //     }
+    //   })
+    //   setCategories(updateCategories)
+  }
+
+  function updateCategoriesTasks(deletedTaskObj){
       let updatedCategories = categories.map((category) => {
           if (category.id === deletedTaskObj.category_id){
             // remove task from category.tasks
@@ -64,33 +105,46 @@ function App() {
   }
 
   function deleteTask(taskObj){
-  
     fetch(`http://localhost:9292/tasks/${taskObj.id}`, {
       method: "DELETE",
     })
       .then((r) => r.json())
-      .then((deletedTask) => updateCategories(deletedTask))
+      .then((deletedTask) => updateCategoriesTasks(deletedTask))
+  }
+
+  function updateCategoriesAfterCategoryDelete(deletedCategoryObj){
+    console.log("deletedCategory", deletedCategoryObj)
+    // filter through categories, add if category.id != deletedCategoryObj
+    let updatedCategories = categories.filter((category) => category.id != deletedCategoryObj.id)
+    setCategories(updatedCategories)
+  }
+
+  function deleteCategory(categoryObj){
+    console.log("categoryObj", categoryObj)
+    fetch(`http://localhost:9292/categories/${categoryObj.id}`, {
+      method: "DELETE",
+    })
+      .then((r) => r.json())
+      .then((deletedCategory) => updateCategoriesAfterCategoryDelete(deletedCategory))
   }
 
 
-  const arrOfTasksArrs = categories.map((category) => category.tasks)
-  console.log("arrOfTasksArrs", arrOfTasksArrs)
+  // const arrOfTasksArrs = categories.map((category) => category.tasks)
 
-  const tasks = [].concat(...arrOfTasksArrs)
-  console.log("tasks in app", tasks)
+  // const tasks = [].concat(...arrOfTasksArrs)
 
   return (
     <>
       <div className='header text-center'>
-        <Header save={saveTask} />
+        <Header save={saveTask} categories={categories} />
       </div>
       <br></br>
-      {/* <div className= "task-container">
-        <ToDosContainer  categories={categories} deleteTask={deleteTask} />
-      </div> */}
       <Routes>
         <Route path="/home" element={<Home />} />
-        <Route path="/categories" element={<ToDosContainer  categories={categories} deleteTask={deleteTask} />} />
+        <Route 
+          path="/categories" 
+          element={<ToDosContainer categories={categories} deleteTask={deleteTask} deleteCategory={deleteCategory} />} 
+        />
         <Route path="/tasks" element={<Tasks deleteTask={deleteTask} categories={categories} tasks={tasks} />} />
       </Routes>
     </>

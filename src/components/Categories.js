@@ -1,16 +1,22 @@
 import React from 'react'
+import { ListGroup, ListGroupItem, ListGroupItemHeading } from 'reactstrap'
 import Category from './Category'
 
 
-const Categories = ({ categories, deleteTask }) => {
+const Categories = ({ categories, deleteTask, deleteCategory }) => {
 
-    const category = categories.map((category) => <Category key={category.id} name={category.name} tasks={category.tasks} deleteTask={deleteTask} />)
+    const category = categories.map((category) => <Category key={category.id} deleteCategory={deleteCategory} category={category}name={category.name} tasks={category.tasks} deleteTask={deleteTask} />)
 
   return (
     <div className="Categories">
-      <h2> Task Categories</h2>
-      <div>{category}</div>
+      <ListGroup>
+        <ListGroupItemHeading> 
+          Task Categories 
+        </ListGroupItemHeading>
+        <ListGroupItem>{category}</ListGroupItem>
+      </ListGroup>
     </div>
+
   )
 }
 

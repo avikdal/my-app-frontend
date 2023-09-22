@@ -1,14 +1,16 @@
 import React from 'react'
-import { Button, Form, FormGroup, Label, Input, FormText, CloseButton } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 const Task = ({ taskInfo, deleteTask }) => {
 
     // console.log("task info", taskInfo)
 
-    function handleClick(e){
-      console.log("close buttonclicked event", e)
-      console.log("taskInfo in task component", taskInfo)
+    function handleDelete(e){
       deleteTask(taskInfo)
+    }
+
+    function handleEdit(e){
+      console.log("taskInfo", taskInfo)
     }
     
   return (
@@ -18,10 +20,16 @@ const Task = ({ taskInfo, deleteTask }) => {
         check
         inline
       >
-        <Input type="checkbox" />
-        <Label check>{taskInfo.task}</Label>
-        {/* <Button outline size="sm"> 🗑️ </Button> */}
-        <CloseButton onClick={handleClick} />
+        {/* <Input type="checkbox" /> */}
+        <Label check>
+          {taskInfo.task}
+        </Label>
+        {' '}
+        <Button outline size="sm" onClick={handleEdit}> 
+          ✏️ 
+        </Button>
+        {' '}
+        <Button outline size="sm" onClick={handleDelete}>🗑️</Button>
       </FormGroup>
      
     </div>
