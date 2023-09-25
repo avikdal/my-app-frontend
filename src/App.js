@@ -6,25 +6,24 @@ import ToDosContainer from './components/ToDosContainer';
 import Home from './components/Home';
 import Tasks from './components/Tasks';
 
-// Implement proper front end state management. You should be updating state using a setState function after receiving your response from a POST, PATCH, or DELETE request. You should NOT be relying on a GET request to update state.
 
 function App() {
   const [categories, setCategories] = useState([])
 
+
   useEffect(() => {
-      fetch('http://localhost:9292/categories')
-      .then(r => r.json())
-      .then(category => {
-        setCategories(category)
-      })
-  }, [])
+    fetchCategories();
+  }, []);
 
-  // const arrOfTasksArrs = categories.map((category) => category.tasks)
+  const fetchCategories = () => {
+    fetch('http://localhost:9292/categories')
+      .then((r) => r.json())
+      .then((categoryData) => setCategories(categoryData))
+      .catch((error) => console.error('Error fetching categories:', error));
+  };
 
-  // const tasks = [].concat(...arrOfTasksArrs)
 
   function updateCategoriesTasks(taskObj){
-    // console.log("taskObj in updateCategories", taskObj)
     let updateCategories = categories.map((category) => {
       if (category.id === taskObj.category_id) {
           // make copy of category that has updated array tasks
@@ -40,9 +39,6 @@ function App() {
   }
 
   function addCategory(taskObj){
-    // console.log("how to add object to array? do I need to make another fetch request?")
-    // grab category
-    // add category to categories array
     let correctedTaskObj = {id: taskObj.id, task: taskObj.task, category_id: taskObj.category_id}
     let newCategory = {...taskObj.category}
     newCategory.tasks = [correctedTaskObj]
@@ -51,14 +47,8 @@ function App() {
   }
 
   function saveTask(taskObj){
-    // console.log(" hit it taskObj in saveTask", taskObj)
     let correctedTaskObj = {id: taskObj.id, task: taskObj.task, category_id: taskObj.category_id}
-    console.log("correctedTaskObj", correctedTaskObj)
-    // console.log("tasks in save task func", tasks)
-    // is the category associated with the task object, is it a new category?
-    // tasks.map((task) => task.category_id).includes(taskObj.category_id)
     let checkCategories = categories.find((category) => category.id == taskObj.category_id)
-    console.log("checkCategories", checkCategories)
     // if checkCategories is in existing categories array updateCategories, if not add new category to categories array then updateCategories
     checkCategories ? updateCategoriesTasks(correctedTaskObj) : addCategory(taskObj)
   }
@@ -88,14 +78,11 @@ function App() {
   }
 
   function updateCategoriesAfterCategoryDelete(deletedCategoryObj){
-    // console.log("deletedCategory", deletedCategoryObj)
-    // filter through categories, add if category.id != deletedCategoryObj
     let updatedCategories = categories.filter((category) => category.id != deletedCategoryObj.id)
     setCategories(updatedCategories)
   }
 
   function deleteCategory(categoryObj){
-    // console.log("categoryObj", categoryObj)
     fetch(`http://localhost:9292/categories/${categoryObj.id}`, {
       method: "DELETE",
     })
@@ -104,24 +91,16 @@ function App() {
   }
 
   function updateTasks(updatedTaskObj){
-    // console.log("updatedTaskObj", updatedTaskObj)
-    // delete updatedTaskObj.category
-    // let correctedTaskObj = {id: updatedTaskObj.id, task: updatedTaskObj.task, category_id: updatedTaskObj.category_id}
-    // console.log("correctedTaskObj", correctedTaskObj)
     let category = categories.find((category) => category.id == updatedTaskObj.category_id)
-    // console.log("category grabbed from updated task", category)
      // iterate through tasks, if task.id == updatedTaskObj.id replace task with correctedTaskObj
     let updatedCategoryTaskArr = category.tasks.map((task) => {
-      // console.log("this is a task", task)
       if(task.id === updatedTaskObj.id){
         return updatedTaskObj
       } else {
         return task
       }
     })
-    // console.log("updatedCategoryTaskArr in update task func", updatedCategoryTaskArr)
     let updatedCategory = {...category, tasks: updatedCategoryTaskArr}
-    // console.log("updatedCategory", updatedCategory)
      //update categories array with updated category
     let updateCategories = categories.map((category) => {
       if (category.id === updatedCategory.id){
@@ -134,10 +113,8 @@ function App() {
   }
 
   function saveNewCategory(categoryObj){
-    // console.log("new category in app", categoryObj)
     let updatedCategoryObj = {...categoryObj, tasks: []}
     let updatedCategories = [...categories, updatedCategoryObj]
-    // console.log("updatedCategories", updatedCategoryObj)
     setCategories(updatedCategories)
   }
 
