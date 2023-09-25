@@ -1,14 +1,11 @@
 import React, { useState } from 'react'
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 const Task = ({ taskInfo, deleteTask, update }) => {
   const [editTask, setEditTask] = useState(false);
   const [updatedTask, setUpdatedTask] = useState('');
   
   const toggle = () => setEditTask(!editTask)
-
-    // console.log("task info", taskInfo)
-    // console.log("editTask" , editTask)
 
     function handleChange(e){
       setUpdatedTask(e.target.value)
@@ -35,7 +32,6 @@ const Task = ({ taskInfo, deleteTask, update }) => {
       })
       .then((r) => r.json())
       .then((task) => {
-        // console.log("this is the return json", task)
         update(task)
       })
       setEditTask(false)

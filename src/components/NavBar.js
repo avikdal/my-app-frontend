@@ -34,13 +34,12 @@ const NavBar = ({ save, categories, saveNewCategory }) => {
             </NavLink>
         </NavItem>
         <NavItem>
-            {/* <button className= "btn btn-primary mt-2" onClick={() => setModal(true)}> Create Task </button> */}
             <NavLink onClick={() => setTaskModal(true)}> Create a Task</NavLink>
-            <CreateTask modal={taskModal} resetModal={setTaskModal} toggle={toggleTask} save={save} categories={categories} />
+                <CreateTask modal={taskModal} resetModal={setTaskModal} toggle={toggleTask} save={save} categories={categories} />
         </NavItem>
         <NavItem>
             <NavLink onClick={() => setCategoryModal(true)}> Create a Category</NavLink>
-            <CreateCategory modal={categoryModal} resetModal={setCategoryModal} toggle={toggleCategory} saveNewCategory={saveNewCategory} />
+                <CreateCategory modal={categoryModal} resetModal={setCategoryModal} toggle={toggleCategory} saveNewCategory={saveNewCategory} />
         </NavItem>
     </Nav>
   )

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
-import ToDosContainer from './components/ToDosContainer';
 import Home from './components/Home';
 import Tasks from './components/Tasks';
+import Categories from './components/Categories';
 
 
 function App() {
@@ -129,7 +129,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route 
           path="/categories" 
-          element={<ToDosContainer update={updateTasks} categories={categories} deleteTask={deleteTask} deleteCategory={deleteCategory} />} 
+          element={<Categories update={updateTasks} categories={categories} deleteTask={deleteTask} deleteCategory={deleteCategory} />} 
         />
         <Route path="/tasks" element={<Tasks deleteTask={deleteTask} update={updateTasks} categories={categories} />} />
       </Routes>

@@ -6,12 +6,9 @@ const CreateCategory = ({ modal, resetModal, toggle, saveNewCategory }) => {
     const [newCategory, setNewCategory] = useState('');
 
     function handleChange(e){
-        // const { value } = e.target
-        // console.log("1", e.target.value)
         setNewCategory(e.target.value)
     }
 
-    console.log("newCategory", newCategory)
 
     function handleSave(){
         let category = {}
