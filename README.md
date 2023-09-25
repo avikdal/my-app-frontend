@@ -1,6 +1,6 @@
-# Getting Started with Create React App
+# Getting Started with To-Do App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is the frontend part of To-Do App, which is built using [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
@@ -27,44 +27,45 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Using To-Do App
 
-### `npm run eject`
+To-Do App is designed to help you manage your tasks and categories efficiently. It communicates with a separate backend API to provide a seamless user experience. To get started:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Ensure that the backend API is up and running. You can refer to the backend README for instructions on setting up the backend.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+2. Set up the frontend by following these steps:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   - Clone this repository.
+   - Navigate to the project directory in your terminal.
+   - Run `npm install` to install the necessary dependencies.
+   - Start the development server using `npm start`.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+3. Access the [http://localhost:3000](http://localhost:3000) URL in your browser to use [Your To-Do App Name].
 
-## Learn More
+## Frontend Features
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- The React frontend interacts with the backend to provide a user-friendly interface for managing tasks and categories. It communicates with the API to perform CRUD operations.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    - Create a New Todo: Use the "Add Task" button to create a new task and assign it to a category.
+    - Create a New Category: Use the "Add Category" button to create a new category.
+    - Read a List of All Todos: Tasks are displayed in a list.
+    - Read List of All Categories: Categories are displayed in a separate list.
+    - Update an Individual Todo: Click on a task to edit its details, then click the "Save" button to update.
+    - Delete a Todo: Click on a task to edit its details, then click the "Delete" button to remove it.
+    - Delete Category and All Todos in It: Deleting a category will also delete all tasks associated with that category.
 
-### Code Splitting
+## Backend Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- The Sinatra backend provides the following API routes:
 
-### Analyzing the Bundle Size
+    - Create Task: POST /tasks
+    - Read All Tasks: GET /tasks
+    - Read Task by ID: GET /tasks/:id
+    - Update Task: PATCH /tasks/:id
+    - Delete Task: DELETE /tasks/:id
+    - Create Category: POST /categories
+    - Read All Categories: GET /categories
+    - Read Category by ID: GET /categories/:id
+    - Update Category: PATCH /categories/:id
+    - Delete Category: DELETE /categories/:id
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
