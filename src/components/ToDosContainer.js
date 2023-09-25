@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Categories from './Categories';
 
 
-const ToDosContainer = ({ categories, deleteTask, deleteCategory }) => {
+const ToDosContainer = ({ categories, deleteTask, deleteCategory, update }) => {
     // const [categories, setCategories] = useState([])
     // const [tasks, setTasks] = useState([])
 
@@ -30,7 +30,7 @@ const ToDosContainer = ({ categories, deleteTask, deleteCategory }) => {
 
   return (
     <div>
-        <Categories categories={categories} deleteTask={deleteTask} deleteCategory={deleteCategory} />
+        <Categories update={update} categories={categories} deleteTask={deleteTask} deleteCategory={deleteCategory} />
     </div>
   )
 }

@@ -13,7 +13,7 @@ const NavBar = ({ save, categories }) => {
         <NavItem>
             <NavLink
                 active
-                href="/home"
+                href="/"
             >
                 Home
             </NavLink>

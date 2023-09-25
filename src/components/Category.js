@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Collapse, CardBody, Card, CardHeader, Button, Badge, ListGroup, ListGroupItem, ListGroupItemHeading } from 'reactstrap';
 import Task from './Task'
 
-const Category = ({ category, name, tasks, deleteTask, deleteCategory }) => {
+const Category = ({ category, name, tasks, deleteTask, deleteCategory, update }) => {
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -36,7 +36,7 @@ const Category = ({ category, name, tasks, deleteTask, deleteCategory }) => {
         </Card> */}
         <ListGroup>
           <ListGroupItem>
-          {tasks.map((task) => <Task key={task.id} taskInfo={task} deleteTask={deleteTask} />)}
+          {tasks.map((task) => <Task key={task.id} taskInfo={task} update={update} deleteTask={deleteTask} />)}
           </ListGroupItem>
           <Button color="secondary" onClick={handleClick}> Delete Entire Category </Button>
         </ListGroup>

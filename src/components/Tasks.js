@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Task from './Task'
 
-const Tasks = ({ deleteTask, categories, tasks }) => {
+const Tasks = ({ deleteTask, categories, tasks, update }) => {
     // const [tasks, setTasks] = useState([])
 
     // useEffect(() => {
@@ -29,7 +29,7 @@ const Tasks = ({ deleteTask, categories, tasks }) => {
   return (
     <div>
       <h1> This is Tasks header </h1>
-      <div>{tasks.map((task) => <Task key={task.id} taskInfo={task} deleteTask={deleteTask} />)}</div>
+      <div>{tasks.map((task) => <Task key={task.id} taskInfo={task} deleteTask={deleteTask} update={update} />)}</div>
     </div>
   )
 }
