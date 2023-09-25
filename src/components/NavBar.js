@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { Nav, NavItem, NavLink } from 'reactstrap'
 import CreateTask from '../modals/CreateTask'
+import CreateCategory from '../modals/CreateCategory'
 
-const NavBar = ({ save, categories }) => {
-    const [modal, setModal] = useState(false);
+const NavBar = ({ save, categories, saveNewCategory }) => {
+    const [taskModal, setTaskModal] = useState(false);
+    const [categoryModal, setCategoryModal] = useState(false);
 
-    const toggle = () => setModal(!modal);
+    const toggleTask = () => setTaskModal(!taskModal);
+    const toggleCategory = () => setCategoryModal(!categoryModal);
 
   return (
 
@@ -29,13 +32,15 @@ const NavBar = ({ save, categories }) => {
             >
                 All Tasks
             </NavLink>
-            {/* <button className= "btn btn-primary mt-2" onClick={() => setModal(true)}> Create Task </button>
-            <CreateTask modal={modal} reset={setModal} toggle={toggle} save={save} /> */}
         </NavItem>
         <NavItem>
             {/* <button className= "btn btn-primary mt-2" onClick={() => setModal(true)}> Create Task </button> */}
-            <NavLink onClick={() => setModal(true)}> Create a Task</NavLink>
-            <CreateTask modal={modal} resetModal={setModal} toggle={toggle} save={save} categories={categories} />
+            <NavLink onClick={() => setTaskModal(true)}> Create a Task</NavLink>
+            <CreateTask modal={taskModal} resetModal={setTaskModal} toggle={toggleTask} save={save} categories={categories} />
+        </NavItem>
+        <NavItem>
+            <NavLink onClick={() => setCategoryModal(true)}> Create a Category</NavLink>
+            <CreateCategory modal={categoryModal} resetModal={setCategoryModal} toggle={toggleCategory} saveNewCategory={saveNewCategory} />
         </NavItem>
     </Nav>
   )

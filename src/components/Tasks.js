@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Task from './Task'
 
-const Tasks = ({ deleteTask, categories, tasks, update }) => {
+const Tasks = ({ deleteTask, categories, update }) => {
     // const [tasks, setTasks] = useState([])
 
     // useEffect(() => {
@@ -25,6 +25,10 @@ const Tasks = ({ deleteTask, categories, tasks, update }) => {
     //   })
     // })
     // console.log("arrOfTasks", arrOfTasks)
+
+    const arrOfTasksArrs = categories.map((category) => category.tasks)
+
+    const tasks = [].concat(...arrOfTasksArrs)
 
   return (
     <div>

@@ -19,9 +19,9 @@ function App() {
       })
   }, [])
 
-  const arrOfTasksArrs = categories.map((category) => category.tasks)
+  // const arrOfTasksArrs = categories.map((category) => category.tasks)
 
-  const tasks = [].concat(...arrOfTasksArrs)
+  // const tasks = [].concat(...arrOfTasksArrs)
 
   function updateCategoriesTasks(taskObj){
     // console.log("taskObj in updateCategories", taskObj)
@@ -105,15 +105,16 @@ function App() {
 
   function updateTasks(updatedTaskObj){
     // console.log("updatedTaskObj", updatedTaskObj)
-    let correctedTaskObj = {id: updatedTaskObj.id, task: updatedTaskObj.task, category_id: updatedTaskObj.category_id}
+    // delete updatedTaskObj.category
+    // let correctedTaskObj = {id: updatedTaskObj.id, task: updatedTaskObj.task, category_id: updatedTaskObj.category_id}
     // console.log("correctedTaskObj", correctedTaskObj)
-    let category = categories.find((category) => category.id == correctedTaskObj.category_id)
+    let category = categories.find((category) => category.id == updatedTaskObj.category_id)
     // console.log("category grabbed from updated task", category)
      // iterate through tasks, if task.id == updatedTaskObj.id replace task with correctedTaskObj
     let updatedCategoryTaskArr = category.tasks.map((task) => {
       // console.log("this is a task", task)
-      if(task.id === correctedTaskObj.id){
-        return correctedTaskObj
+      if(task.id === updatedTaskObj.id){
+        return updatedTaskObj
       } else {
         return task
       }
@@ -132,11 +133,19 @@ function App() {
     setCategories(updateCategories)
   }
 
+  function saveNewCategory(categoryObj){
+    // console.log("new category in app", categoryObj)
+    let updatedCategoryObj = {...categoryObj, tasks: []}
+    let updatedCategories = [...categories, updatedCategoryObj]
+    // console.log("updatedCategories", updatedCategoryObj)
+    setCategories(updatedCategories)
+  }
+
 
   return (
     <>
       <div className='header text-center'>
-        <Header save={saveTask} categories={categories} />
+        <Header save={saveTask} categories={categories} saveNewCategory={saveNewCategory} />
       </div>
       <br></br>
       <Routes>
@@ -145,7 +154,7 @@ function App() {
           path="/categories" 
           element={<ToDosContainer update={updateTasks} categories={categories} deleteTask={deleteTask} deleteCategory={deleteCategory} />} 
         />
-        <Route path="/tasks" element={<Tasks deleteTask={deleteTask} update={updateTasks} categories={categories} tasks={tasks} />} />
+        <Route path="/tasks" element={<Tasks deleteTask={deleteTask} update={updateTasks} categories={categories} />} />
       </Routes>
     </>
   );
