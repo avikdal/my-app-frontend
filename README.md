@@ -1,5 +1,7 @@
 # To-Do App
 
+![task walkthrough gif](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmlnYjFiYm1tZWk2bDFkZGJib3NpMjNwczNzNjl6c2d5cmRvNHoxMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/46G23jBVb86gBdSDA5/giphy.gif)
+
 This To-Do App is a web application that provides a simple and efficient way to manage your tasks and categories. It consists of a Sinatra API backend that interacts with a database using Active Record, and a separate React frontend that communicates with the backend via API requests. This README will guide you through the setup, features, and usage of this application.
 
 ## Features

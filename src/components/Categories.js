@@ -10,7 +10,7 @@ const Categories = ({ categories, deleteTask, deleteCategory, update }) => {
   return (
     <div className="Categories" style={{padding: '40px'}}>
       <ListGroup>
-        <ListGroupItemHeading style={{ padding: '10px', textAlign: 'center',  fontSize: '34px' }}> 
+        <ListGroupItemHeading style={{ padding: '10px',  fontSize: '34px' }}> 
           Task Categories 
         </ListGroupItemHeading>
         <ListGroupItem>{category}</ListGroupItem>
