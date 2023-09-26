@@ -1,31 +1,28 @@
-# Getting Started with To-Do App
+# To-Do App
+
+This To-Do App is a web application that provides a simple and efficient way to manage your tasks and categories. It consists of a Sinatra API backend that interacts with a database using Active Record, and a separate React frontend that communicates with the backend via API requests. This README will guide you through the setup, features, and usage of this application.
+
+## Features
+
+- Task Management: Create, read, update, and delete tasks.
+- Category Management: Create, read, and delete categories.
+- One-to-Many Relationship: Tasks belong to categories, and each             category can have multiple tasks.
+- RESTful API: Follows RESTful conventions with well-defined routes for CRUD operations.
+Ruby & ActiveRecord Backendend: [for link]: https://github.com/avikdal/phase-3-sinatra-react-project
+- State Management: Proper state management in the frontend using setState to reflect changes after API requests.
+- JSON Data: JSON data is passed from the backend to the frontend for related associations.
+
+## Getting Started with To-Do App
 
 This project is the frontend part of To-Do App, which is built using [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
-
-In the project directory, you can run:
 
 ### `npm start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
 ## Using To-Do App
 
@@ -40,7 +37,7 @@ To-Do App is designed to help you manage your tasks and categories efficiently. 
    - Run `npm install` to install the necessary dependencies.
    - Start the development server using `npm start`.
 
-3. Access the [http://localhost:3000](http://localhost:3000) URL in your browser to use [Your To-Do App Name].
+3. Access the [http://localhost:3000](http://localhost:3000) URL in your browser to use To-Do App Name.
 
 ## Frontend Features
 
@@ -54,7 +51,24 @@ To-Do App is designed to help you manage your tasks and categories efficiently. 
     - Delete a Todo: Click on a task to edit its details, then click the "Delete" button to remove it.
     - Delete Category and All Todos in It: Deleting a category will also delete all tasks associated with that category.
 
-## Backend Features
+## Backend Setup & Features
+
+1. Clone this repository to your local machine. [for link]: https://github.com/avikdal/phase-3-sinatra-react-project
+
+2. Install the required gems using:
+
+   ```console
+   $ bundle install
+   ```
+
+3. Start the backend server with:
+
+    ```console
+    $ bundle exec rake server
+    ```
+
+    This will run your server on port
+    [http://localhost:9292](http://localhost:9292).
 
 - The Sinatra backend provides the following API routes:
 
@@ -66,6 +80,5 @@ To-Do App is designed to help you manage your tasks and categories efficiently. 
     - Create Category: POST /categories
     - Read All Categories: GET /categories
     - Read Category by ID: GET /categories/:id
-    - Update Category: PATCH /categories/:id
     - Delete Category: DELETE /categories/:id
 
