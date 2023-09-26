@@ -10,7 +10,7 @@ This To-Do App is a web application that provides a simple and efficient way to 
 - Category Management: Create, read, and delete categories.
 - One-to-Many Relationship: Tasks belong to categories, and each             category can have multiple tasks.
 - RESTful API: Follows RESTful conventions with well-defined routes for CRUD operations.
-Ruby & ActiveRecord Backendend: [for link]: https://github.com/avikdal/phase-3-sinatra-react-project
+- [Ruby & ActiveRecord Backendend](https://github.com/avikdal/phase-3-sinatra-react-project)
 - State Management: Proper state management in the frontend using setState to reflect changes after API requests.
 - JSON Data: JSON data is passed from the backend to the frontend for related associations.
 
@@ -55,7 +55,7 @@ To-Do App is designed to help you manage your tasks and categories efficiently. 
 
 ## Backend Setup & Features
 
-1. Clone this repository to your local machine. [for link]: https://github.com/avikdal/phase-3-sinatra-react-project
+1. Clone [this]( https://github.com/avikdal/phase-3-sinatra-react-project) repository to your local machine. 
 
 2. Install the required gems using:
 
