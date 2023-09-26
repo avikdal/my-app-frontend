@@ -8,9 +8,9 @@ const Categories = ({ categories, deleteTask, deleteCategory, update }) => {
     const category = categories.map((category) => <Category key={category.id} update={update} deleteCategory={deleteCategory} category={category}name={category.name} tasks={category.tasks} deleteTask={deleteTask} />)
 
   return (
-    <div className="Categories">
+    <div className="Categories" style={{padding: '40px'}}>
       <ListGroup>
-        <ListGroupItemHeading> 
+        <ListGroupItemHeading style={{ padding: '10px', textAlign: 'center',  fontSize: '34px' }}> 
           Task Categories 
         </ListGroupItemHeading>
         <ListGroupItem>{category}</ListGroupItem>

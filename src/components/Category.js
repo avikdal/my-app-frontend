@@ -18,9 +18,9 @@ const Category = ({ category, name, tasks, deleteTask, deleteCategory, update })
 
   return (
     <div>
-      <ListGroupItemHeading>
-        {name}{' '}
-        <Badge color="primary" onClick={toggle} >
+      <ListGroupItemHeading style={{ padding: '10px', fontSize: '25px'}}>
+        {name.toUpperCase()}{' '}
+        <Badge style={{fontSize: '12px',  padding: '10px'}} color="primary" onClick={toggle} >
           {isOpen ? "Hide Tasks" : "Show Tasks" }
         </Badge>
       </ListGroupItemHeading>
